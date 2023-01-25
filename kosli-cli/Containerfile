@@ -1,0 +1,4 @@
+FROM ghcr.io/kosli-dev/cli:v0.1.33
+
+RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_arm64 -O /usr/bin/yq &&\
+    chmod +x /usr/bin/yq
