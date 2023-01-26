@@ -1,8 +1,10 @@
-FROM ghcr.io/kosli-dev/cli:v0.1.33
 ARG OPENSHIFT_CLI_VERSION=4.6
 
 # Get OC CLI
 FROM quay.io/openshift/origin-cli:$OPENSHIFT_CLI_VERSION as oc-cli
+
+# Build Base
+FROM ghcr.io/kosli-dev/cli:v0.1.33
 COPY --from=oc-cli /usr/bin/oc /usr/bin/oc
 COPY --from=oc-cli /usr/bin/kubectl /usr/bin/kubectl
 
