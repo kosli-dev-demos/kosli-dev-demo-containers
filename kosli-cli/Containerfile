@@ -3,8 +3,8 @@ ARG KOSLI_CLI_VERSION=v0.1.33
 # Build Base
 FROM ghcr.io/kosli-dev/cli:$KOSLI_CLI_VERSION
 
-RUN wget -c https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz &&\
-    tar -xzf oc -C /usr/bin/oc && chmod +x /usr/bin/oc
+RUN wget -c https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz &&\ 
+    tar -xzf openshift-client-linux.tar.gz -C /usr/bin/oc
 
 RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\
     chmod +x /usr/bin/yq
