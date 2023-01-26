@@ -2,10 +2,11 @@ ARG BASE_IMAGE=ghcr.io/kosli-dev/cli:v0.1.33
 ARG OPENSHIFT_CLI_VERSION=4.6
 
 # Get OC CLI
-FROM quay.io/openshift/origin-cli:$OPENSHIFT_CLI_VERSION as origin-cli
-COPY --from=origin-cli /usr/bin/oc /usr/bin/oc
-COPY --from=origin-cli /usr/bin/kubectl /usr/bin/kubectl
+FROM quay.io/openshift/origin-cli:$OPENSHIFT_CLI_VERSION as oc-cli
+COPY --from=oc-cli /usr/bin/oc /usr/bin/oc
+COPY --from=oc-cli /usr/bin/kubectl /usr/bin/kubectl
 
+# Build Base Image
 FROM $BASE_IMAGE
 
 RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\
