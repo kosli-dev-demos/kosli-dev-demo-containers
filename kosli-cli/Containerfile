@@ -6,8 +6,8 @@ FROM quay.io/openshift/origin-cli:$OPENSHIFT_CLI_VERSION as oc-cli
 
 # Build Base
 FROM ghcr.io/kosli-dev/cli:$KOSLI_CLI_VERSION
-COPY --from=oc-cli /usr/bin/oc /bin/oc
-COPY --from=oc-cli /usr/bin/kubectl /bin/kubectl
+COPY --from=oc-cli /usr/bin/oc /usr/bin/oc && chmod +x /usr/bin/oc
+COPY --from=oc-cli /usr/bin/kubectl /usr/bin/kubectl && chmod +x /usr/bin/kubectl
 
 RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\
     chmod +x /usr/bin/yq
